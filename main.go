@@ -52,18 +52,3 @@ func main() {
     fmt.Println(http.ListenAndServe("localhost:8080", nil))
 }
 
-func testSplitter() {
-    x := chunks.SplitData([]byte("Hello, my name is Johannes and I made this downloader!"), 10)
-    fmt.Println(x)
-}
-
-func testChunks() {
-    c := chunks.NewChunk([]byte("This is a test"))
-    b := chunks.NewChunk([]byte("Another Test"))
-    g := chunks.NewChunk([]byte("This is a test"))
-    fmt.Println("Checksum of c: ", c.Checksum)
-    fmt.Println("Checksum of b: ", b.Checksum)
-    fmt.Println("c == b = ", c.Checksum == b.Checksum)
-    fmt.Println("c == g = ", c.Checksum == g.Checksum)
-}
-
