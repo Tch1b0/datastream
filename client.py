@@ -12,9 +12,9 @@ while ws.recv() != "EOF":
         print(f"Received chunk with content \"{content}\" and checksum {checksum}")
         if (generated_sum := md5(content).hexdigest()) != checksum:
             print(f"Checksum {generated_sum} not matching => Request new chunk")
-            continue
+            ws.send("mismatch")
         else:
-            print("Chunk tasting good")
+            print("Chunk matching")
             ws.send("ok")
             data.extend(content)
             break
