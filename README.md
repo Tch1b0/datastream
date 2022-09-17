@@ -1,15 +1,22 @@
 # datastream
 
-securely donwload data
+stream data without the fear of data corruption
 
 ## purpose
 
-datastream transfers data in chunks via a socket. For each chunk transfered it's checksum is passed. If the checksum from the client and server doesnt match the chunk is simply getting refetched until it is right.
+datastream transfers data in chunks via a socket. 
+
+For each chunk transferred its checksum is passed. If the checksum from the client and server doesnt match the chunk is simply getting refetched until it is right.
+
+datastream is only a proof of concept project, so it is not made for being used in other projects.
 
 ## example
 
-**datafetch dialogue** between server and client (transferred data is displayed as a string for visualization purposes):
+**datafetch dialogue** between server and client (transferred byte data is displayed as a string for visualization purposes):
 ```yml
+# the data being transferred is "this is a message from the server"
+# the chunk size equals 9 Bytes
+
 # ===[ Chunk 1 ]===
 
 Server: CHUNK
