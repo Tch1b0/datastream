@@ -20,12 +20,12 @@ The presentation explains the migration process between servers at [Hetzner](htt
 
 server:
 ```sh
-$ go run main.go <FILEPATH>
+$ go run main.go <SRC_FILE>
 ```
 
 client:
 ```sh
-$ python ./client.py
+$ python ./client.py <DEST_FILE>
 ```
 
 ## example
