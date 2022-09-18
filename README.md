@@ -10,6 +10,18 @@ For each chunk transferred its checksum is passed. If the checksum from the clie
 
 **datastream is only a proof of concept project**, so it is not made for being used in other projects.
 
+## usage
+
+server:
+```sh
+$ go run main.go <FILEPATH>
+```
+
+client:
+```sh
+$ python ./client.py
+```
+
 ## example
 
 **datafetch dialogue** between server and client (transferred byte data is displayed as a string for visualization purposes):
