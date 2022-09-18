@@ -8,7 +8,6 @@ datastream transfers data in chunks via a websocket.
 
 For each chunk transferred its checksum is passed. If the checksum from the client and server doesnt match the chunk is simply getting refetched until it is right.
 
-This project may seem redundant, as the tcp connection on the lower level already handles the data corruption, but
 **datastream is only a proof of concept project**, so it is not made for being used in other projects.
 
 ## usage
