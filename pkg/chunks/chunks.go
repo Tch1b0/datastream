@@ -25,6 +25,7 @@ func NewChunk(data []byte) *Chunk {
 
 func SplitData(data []byte, chunkSize int) *[]*Chunk {
     chunks := []*Chunk{}
+    // temporary storage for collection chunk data
     cache := []byte{}
     for _, b := range data {
         if len(cache) < chunkSize {
@@ -36,6 +37,7 @@ func SplitData(data []byte, chunkSize int) *[]*Chunk {
         }
     }
     if len(cache) != 0 {
+        // append unfinished chunk data
         chunk := NewChunk(cache)
         chunks = append(chunks, chunk)
     }
