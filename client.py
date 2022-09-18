@@ -1,24 +1,34 @@
+import sys
 from hashlib import md5
 from websocket import create_connection
 
 ws = create_connection("ws://localhost:8080/ws")
 data = bytearray()
-# print("Start receiving...")
+
 while ws.recv() != "EOF":
- #   print("Start receiving chunk...")
     while True:
         content: bytearray = ws.recv() # type: ignore
         checksum: str = ws.recv()
-#        print(f"Received chunk with content \"{content}\" and checksum {checksum}")
         if (generated_sum := md5(content).hexdigest()) != checksum:
- #           print(f"Checksum {generated_sum} not matching => Request new chunk")
             ws.send("mismatch")
         else:
-#           print("Chunk matching")
             ws.send("ok")
             data.extend(content)
             break
 
 ws.close()
 
-print(data.decode())
+is_bin = False
+text_content: str
+
+try:
+    text_content = data.decode()
+except:
+    is_bin = True
+
+if len(sys.argv) > 1:
+    with open(sys.argv[1], "w" if not is_bin else "wb") as f:
+        f.write(text_content if not is_bin else data) # type: ignore
+else:
+    print(text_content if not is_bin else data) # type: ignore
+
