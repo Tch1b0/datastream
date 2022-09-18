@@ -10,6 +10,12 @@ For each chunk transferred its checksum is passed. If the checksum from the clie
 
 **datastream is only a proof of concept project**, so it is not made for being used in other projects.
 
+## idea
+
+This project was inspired by the [Storage Migration: Schnell und Einfach](https://chemnitzer.linux-tage.de/2022/de/programm/beitrag/147) presentation by [@RaphaelPour](https://github.com/RaphaelPour) at the [Chemnitzer Linux Tage 2022](https://chemnitzer.linux-tage.de/2022/de/).
+
+The presentation explains the migration process between servers at [Hetzner](https://www.hetzner.com/), and how to optimize it.
+
 ## usage
 
 server:
