@@ -1,8 +1,7 @@
 package chunks
 
 import (
-    "crypto/md5"
-    "encoding/hex"
+    "hash/crc32"
     "fmt"
 )
 
@@ -16,10 +15,10 @@ func (c *Chunk) String() string {
 }
 
 func NewChunk(data []byte) *Chunk {
-    tmp := md5.Sum(data)
+    tmp := crc32.ChecksumIEEE(data)
     return &Chunk{
         Data: data,
-        Checksum: hex.EncodeToString(tmp[:]),
+        Checksum: fmt.Sprintf("%x", tmp),
     }
 }
 
