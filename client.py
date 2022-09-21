@@ -1,17 +1,23 @@
 import sys
-from hashlib import md5
+from binascii import crc32
 from websocket import create_connection
 
 ws = create_connection("ws://localhost:8080/ws")
 data = bytearray()
 
+def short_hex(number: int) -> str:
+    return hex(number)[2:]
+
 while ws.recv() != "EOF":
+    print("receiving chunk")
     while True:
         content: bytearray = ws.recv() # type: ignore
         checksum: str = ws.recv()
-        if (generated_sum := md5(content).hexdigest()) != checksum:
+        if (generated_sum := short_hex(crc32(content))) != checksum:
+            print(f"mismatch ({checksum} != {generated_sum}) => refetching")
             ws.send("mismatch")
         else:
+            print("chunk ok")
             ws.send("ok")
             data.extend(content)
             break
